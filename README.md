@@ -39,3 +39,11 @@ ON ski_resorts.resort_id = snowfall.resort_id
 GROUP BY region
 ORDER BY average_snowfall DESC;
 ```
+
+#### Day 5
+This year, we're celebrating Christmas in the Southern Hemisphere! Which beaches are expected to have temperatures above 30°C on Christmas Day?
+```
+SELECT beach_name 
+FROM beach_temperature_predictions 
+WHERE expected_temperature_c > 30 AND date = '2024-12-25';
+```
