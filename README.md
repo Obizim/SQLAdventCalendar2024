@@ -1,4 +1,5 @@
 # SQL ADVENT CALENDAR 2024
+Link to challenges - https://www.sqlcalendar.com/app/advent-calendar
 
 #### Day 1
 A ski resort company want to know which customers rented ski equipment for more than one type of activity (e.g., skiing and snowboarding). List the customer names and the number of distinct activities they rented equipment for.
@@ -59,4 +60,23 @@ WHERE tracking.date BETWEEN '2024-12-01' AND '2024-12-31'
 GROUP BY polar_bears.bear_id
 ORDER BY total_distance_traveled DESC
 LIMIT 3;
+```
+
+#### Day 7
+The owner of a winter market wants to know which vendors have generated the highest revenue overall. For each vendor, calculate the total revenue for all their items and return a list of the top 2 vendors by total revenue. Include the vendor_name and total_revenue in your results.
+```
+SELECT vendors.vendor_name, SUM(sales.price_per_unit * sales.quantity_sold) AS total_revenue
+FROM vendors JOIN sales
+ON vendors.vendor_id = sales.vendor_id
+GROUP BY vendor_name
+ORDER BY total_revenue DESC
+LIMIT 2;
+```
+
+#### Day 8
+You are managing inventory in Santa's workshop. Which gifts are meant for "good" recipients? List the gift name and its weight.
+```
+SELECT gift_name, weight_kg
+FROM gifts
+WHERE recipient_type = 'good';
 ```
