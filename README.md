@@ -95,3 +95,22 @@ FROM CTE
 WHERE calorie_density_rank <= 3
 ORDER BY event_name;
 ```
+
+#### Day 10
+You are tracking your friends' New Year’s resolution progress. Write a query to calculate the following for each friend: number of resolutions they made, number of resolutions they completed, and success percentage (% of resolutions completed) and a success category based on the success percentage:
+- Green: If success percentage is greater than 75%.
+- Yellow: If success percentage is between 50% and 75% (inclusive).
+- Red: If success percentage is less than 50%.
+```
+SELECT friend_name, 
+COUNT(resolution) AS resolution_count,
+COUNT(CASE WHEN is_completed = 1 THEN 1 END) AS completed_resolutions_count,
+COUNT(CASE WHEN is_completed = 1 THEN 1 END)/COUNT(resolution) * 100 AS success_percentage,
+CASE 
+    WHEN (COUNT(CASE WHEN is_completed = 1 THEN 1 END)/COUNT(resolution) * 100) > 75 THEN 'Green'
+    WHEN (COUNT(CASE WHEN is_completed = 1 THEN 1 END)/COUNT(resolution) * 100) >=50 AND (COUNT(CASE WHEN is_completed = 1 THEN 1 END)/COUNT(resolution) * 100) <=75 THEN 'Yellow'
+    ELSE 'Red'
+END AS success_category
+FROM resolutions
+GROUP BY friend_name;
+```
