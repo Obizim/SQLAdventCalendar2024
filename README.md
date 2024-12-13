@@ -122,3 +122,17 @@ SELECT name, birthday
 FROM family_members
 WHERE birthday BETWEEN '2024-12-01' AND '2024-12-31';
 ```
+
+#### Day 12
+A collector wants to identify the top 3 snow globes with the highest number of figurines. Write a query to rank them and include their globe_name, number of figurines, and material.
+```
+SELECT snow_globes.globe_name,
+COUNT(figurines.figurine_type) AS num_figurines,
+snow_globes.material
+FROM snow_globes 
+JOIN figurines
+ON snow_globes.globe_id = figurines.globe_id
+GROUP BY globe_name
+ORDER BY num_figurines DESC
+LIMIT 3;
+```
