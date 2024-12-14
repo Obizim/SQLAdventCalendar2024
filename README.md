@@ -136,3 +136,19 @@ GROUP BY globe_name
 ORDER BY num_figurines DESC
 LIMIT 3;
 ```
+
+#### Day 13
+We need to make sure Santa's sleigh is properly balanced. Find the total weight of gifts for each recipient.
+```
+SELECT recipient, SUM(weight_kg) 
+FROM gifts
+GROUP BY recipient;
+```
+
+#### Day 14
+Which ski resorts had snowfall greater than 50 inches?
+```
+SELECT * 
+FROM snowfall
+WHERE snowfall_inches > 50;
+```
