@@ -152,3 +152,15 @@ SELECT *
 FROM snowfall
 WHERE snowfall_inches > 50;
 ```
+
+#### Day 15
+A family reunion is being planned, and the organizer wants to identify the three family members with the most children. Write a query to calculate the total number of children for each parent and rank them. Include the parent’s name and their total number of children in the result.
+```
+SELECT name, COUNT(child_id) AS total_children
+FROM family_members
+JOIN parent_child_relationships 
+ON member_id = parent_id
+GROUP BY name
+ORDER BY total_children DESC
+LIMIT 3;
+```
