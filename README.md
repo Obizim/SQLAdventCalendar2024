@@ -164,3 +164,11 @@ GROUP BY name
 ORDER BY total_children DESC
 LIMIT 3;
 ```
+
+#### Day 16
+As the owner of a candy store, you want to understand which of your products are selling best. Write a query to calculate the total revenue generated from each candy category.
+```
+SELECT category, SUM(quantity_sold * price_per_unit) AS total_revenue
+FROM candy_sales
+GROUP BY category;
+```
