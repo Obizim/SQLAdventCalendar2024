@@ -181,3 +181,14 @@ FROM grinch_pranks
 WHERE difficulty IN ('Advanced', 'Expert')
 ORDER BY prank_name DESC, location DESC;
 ```
+
+#### Day 18
+A travel agency is promoting activities for a "Summer Christmas" party. They want to identify the top 2 activities based on the average rating. Write a query to rank the activities by average rating.
+```
+SELECT activity_name, AVG(rating) AS avg_rating
+FROM activities
+JOIN activity_ratings
+ON activities.activity_id = activity_ratings.activity_id
+GROUP BY activity_name
+ORDER BY avg_rating DESC LIMIT 2;
+```
