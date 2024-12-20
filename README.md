@@ -192,3 +192,25 @@ ON activities.activity_id = activity_ratings.activity_id
 GROUP BY activity_name
 ORDER BY avg_rating DESC LIMIT 2;
 ```
+
+#### Day 19
+Scientists are studying the diets of polar bears. Write a query to find the maximum amount of food (in kilograms) consumed by each polar bear in a single meal December 2024. Include the bear_name and biggest_meal_kg, and sort the results in descending order of largest meal consumed.
+```
+SELECT bear_name, MAX(food_weight_kg) AS biggest_meal_kg
+FROM polar_bears
+JOIN meal_log
+ON polar_bears.bear_id = meal_log.bear_id
+WHERE "date" BETWEEN '2024-12-01' AND '2024-12-31'
+GROUP BY bear_name
+ORDER BY biggest_meal_kg DESC;
+```
+
+#### Day 20
+We are looking for cheap gifts at the market. Which vendors are selling items priced below $10? List the unique (i.e. remove duplicates) vendor names.
+```
+SELECT DISTINCT vendor_name
+FROM vendors
+JOIN item_prices
+ON vendors.vendor_id = item_prices.vendor_id
+WHERE price_usd < 10;
+```
