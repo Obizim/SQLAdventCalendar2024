@@ -214,3 +214,34 @@ JOIN item_prices
 ON vendors.vendor_id = item_prices.vendor_id
 WHERE price_usd < 10;
 ```
+
+#### Day 21
+Santa needs to optimize his sleigh for Christmas deliveries. Write a query to calculate the total weight of gifts for each recipient type (good or naughty) and determine what percentage of the total weight is allocated to each type. Include the recipient_type, total_weight, and weight_percentage in the result.
+```
+WITH CTE AS (
+    SELECT recipient_type,
+     SUM(weight_kg) AS total_weight, SUM(SUM(weight_kg)) OVER() AS overall_total_weight
+    FROM gifts
+    GROUP BY recipient_type) 
+     SELECT recipient_type, total_weight,
+     (total_weight/overall_total_weight) * 100 AS weight_percentage
+     FROM CTE;
+```
+
+#### Day 22
+We are hosting a gift party and need to ensure every guest receives a gift. Using the guests and guest_gifts tables, write a query to identify the guest(s) who have not been assigned a gift (i.e. they are not listed in the guest_gifts table).
+```
+SELECT guest_name
+FROM guests
+LEFT JOIN guest_gifts
+ON guests.guest_id = guest_gifts.guest_id
+WHERE guest_gifts.guest_id IS NULL;
+```
+
+#### Day 23
+The Grinch tracked his weight every day in December to analyze how it changed daily. Write a query to return the weight change (in pounds) for each day, calculated as the difference from the previous day's weight.
+```
+SELECT day_of_month,
+   LAG(weight) OVER(ORDER BY day_of_month) - weight AS diff
+FROM grinch_weight_log;
+```
