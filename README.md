@@ -245,3 +245,10 @@ SELECT day_of_month,
    LAG(weight) OVER(ORDER BY day_of_month) - weight AS diff
 FROM grinch_weight_log;
 ```
+
+#### Day 24
+Santa is tracking how many presents he delivers each night leading up to Christmas. He wants a running total to see how many gifts have been delivered so far on any given night. Using the deliveries table, calculate the cumulative sum of gifts delivered, ordered by the delivery date.
+```
+SELECT SUM(gifts_delivered) OVER(ORDER BY delivery_date)
+FROM deliveries;
+```
